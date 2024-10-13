@@ -9,17 +9,17 @@ public class GameManager : MonoBehaviour
     public GameObject Tutorial;
     public GameObject Score;
     public GameObject player;
+    public GameObject pipes;
 
     public bool isReady = false;
     public bool isPlay = false;
+    public bool isOver = false;
 
     public void ButtonClick()
     {
-        Main.GetComponent<UImanager>().hideUI();
-        Tutorial.GetComponent<UImanager>().showUI();
-        Score.GetComponent<UImanager>().showUI();
-        isReady = true;
+        ReadyGame();
     }
+
     public void Update()
     {
         //精妙的设计
@@ -27,11 +27,29 @@ public class GameManager : MonoBehaviour
         if(isPlay) return;
         if (Input.GetMouseButton(0))
         {
-            Tutorial.GetComponent<UImanager>().hideUI();
-            player.GetComponent<playerRigidbody>().stateSwtich(true);
+            StartGame();
+        }   
+    }
 
-            isPlay = true;
-        }
-            
+    public void ReadyGame()
+    {
+        Main.GetComponent<UImanager>().hideUI();
+        Tutorial.GetComponent<UImanager>().showUI();
+        Score.GetComponent<UImanager>().showUI();
+        isReady = true;
+    }
+    public void StartGame()
+    {
+        Tutorial.GetComponent<UImanager>().hideUI();
+        player.GetComponent<playerRigidbody>().stateSwtich(true);
+        isPlay = true;
+    }
+
+    public void OverGame()
+    {
+        Debug.Log("GameOver");
+        isReady = false;
+        isPlay = false;
+        pipes.GetComponent<pipespawner>().stoppipe();
     }
 }

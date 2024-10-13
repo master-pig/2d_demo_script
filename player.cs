@@ -29,7 +29,7 @@ public class player : MonoBehaviour
             speed += jumpParameter;
         }
         speed += Time.deltaTime * gravity;
-        //Debug.Log(speed);   
+        Debug.Log(speed);
         transform.position = new Vector3(0, speed * Time.deltaTime + transform.position.y, 0);
     }
 }

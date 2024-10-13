@@ -15,8 +15,7 @@ public class playerRigidbody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        birdrb = GetComponent<Rigidbody2D>();
-        
+        birdrb = GetComponent<Rigidbody2D>();    
     }
 
     // Update is called once per frame
